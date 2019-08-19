@@ -1,0 +1,32 @@
+ol {
+    list-style-type: square;
+    line-height: 3rem;
+}
+
+.table td,
+.table th {
+    border: none;
+    font-size: 20px;
+}
+
+.table {
+    color: #f9f9f9;
+    text-align: center;
+}
+
+.container {
+    height: 600px;
+
+}
+
+.game-container {
+    background-color: #222;
+    color: #f9f9f9;
+    height: 100%;
+    padding: 50px;
+}
+
+.game-col {
+    border: 1px solid red;
+
+}

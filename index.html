@@ -1,15 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Game</title>
+    <title>Word Gusess Game</title>
     <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/reset.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
-    
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Word Guessing Game </a>
+        </nav>
+    </header>
+
+    <div class="container mt-5">
+        <div class="row game-container">
+            <div class="col-lg-6">
+                <h5>Have you played Hangman?!</h5>
+                <p>The game is simple:</p>
+                <ol class="mt-5">
+                    <li>You get only so many guesses...</li>
+                    <li>Wins and losses will be tracked till the page is refreshed...</li>
+                    <li>So, you think you're able to guess the word?</li>
+                    <li>Type any letter to get started...</li>
+                </ol>
+                <p id="userchoice-text"></p>
+                <p id="computerchoice-text"></p>
+                <p id="userwon-text"></p>
+            </div>
+            <div class="col-lg-6 game-col">
+                <div class="row mt-5">
+                    <div class="col-lg-12">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Games Won</th>
+                                    <th scope="col">Games Lost</th>
+                                    <th scope="col">Guesses Left</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="wins-text">0</td>
+                                    <td id="losses-text">0</td>
+                                    <td id="guesses-text">0</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-lg-12">
+                        <table class="table table-sm test">
+                            <tbody>
+                                <tr>
+                                    <td id="a">A</tdX>
+                                    <td id="b">B</td>
+                                    <td id="c">C</td>
+                                    <td id="d">D</td>
+                                    <td id="e">E</td>
+                                    <td id="f">F</td>
+                                </tr>
+                                <tr>
+                                    <td id="g">G</td>
+                                    <td id="h">H</td>
+                                    <td id="i">I</td>
+                                    <td id="j">J</td>
+                                    <td id="k">K</td>
+                                    <td id="l">L</td>
+                                </tr>
+                                <tr>
+                                    <td id="m">M</td>
+                                    <td id="n">N</td>
+                                    <td id="o">O</td>
+                                    <td id="p">P</td>
+                                    <td id="q">Q</td>
+                                    <td id="r">R</td>
+                                </tr>
+                                <tr>
+                                    <td id="s">S</td>
+                                    <td id="t">T</td>
+                                    <td id="u">U</td>
+                                    <td id="v">V</td>
+                                    <td id="w">W</td>
+                                    <td id="x">X</td>
+                                </tr>
+                                <tr>
+                                    <td id="y">Y</td>
+                                    <td id="z">Z</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
 <script type="text/javascript" src="assets/javascript/game.js"></script>
+
 </html>
