@@ -1,3 +1,6 @@
+body{
+    background-image: url(/assets/images/dcvsmarvel.jpg)
+}
 ol {
     list-style-type: square;
     line-height: 3rem;
