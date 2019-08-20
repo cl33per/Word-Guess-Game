@@ -33,6 +33,7 @@ var game = {
                 game.guessingWord[i] = letter
                 foundLetter = true
                 correctSound.play()
+                document.getElementById(event.key).style.color = "#222";
                 // logic for word guesssed to match wordToMatch
                 if (game.guessingWord.join("") === wordToMatch) {
                     // Increment # of wins
@@ -50,6 +51,7 @@ var game = {
             if (!game.guessedLetters.includes(letter)) {
                 game.guessedLetters.push(letter)
                 numGuess--
+                document.getElementById(event.key).style.color = "#222";
             }
             if (numGuess === 0) {
                 // Updates the display when the game is over showing the word
@@ -84,13 +86,44 @@ var game = {
             }
         }
         game.updateDisplay()
+        game.resetColors()
     },
     updateDisplay: function () {
-        document.getElementById("totalWins").innerText = game.wins
+        document.getElementById("Wins").innerText = game.wins
         document.getElementById("currentWord").innerText = game.guessingWord.join(" ")
         document.getElementById("remainingGuesses").innerText = numGuess
         document.getElementById("guessedLetters").innerText = game.guessedLetters.join(" ")
-    }
+    
+    },
+// Functions Outside of onkeup
+resetColors: function() {
+            document.getElementById("a").style.color = "#fff";
+            document.getElementById("b").style.color = "#fff";
+            document.getElementById("c").style.color = "#fff";
+            document.getElementById("d").style.color = "#fff";
+            document.getElementById("e").style.color = "#fff";
+            document.getElementById("f").style.color = "#fff";
+            document.getElementById("g").style.color = "#fff";
+            document.getElementById("h").style.color = "#fff";
+            document.getElementById("i").style.color = "#fff";
+            document.getElementById("j").style.color = "#fff";
+            document.getElementById("k").style.color = "#fff";
+            document.getElementById("l").style.color = "#fff";
+            document.getElementById("m").style.color = "#fff";
+            document.getElementById("n").style.color = "#fff";
+            document.getElementById("o").style.color = "#fff";
+            document.getElementById("p").style.color = "#fff";
+            document.getElementById("q").style.color = "#fff";
+            document.getElementById("r").style.color = "#fff";
+            document.getElementById("s").style.color = "#fff";
+            document.getElementById("t").style.color = "#fff";
+            document.getElementById("u").style.color = "#fff";
+            document.getElementById("v").style.color = "#fff";
+            document.getElementById("w").style.color = "#fff";
+            document.getElementById("x").style.color = "#fff";
+            document.getElementById("y").style.color = "#fff";
+            document.getElementById("z").style.color = "#fff";
+}
 }
 
 $(document).ready(function () {
