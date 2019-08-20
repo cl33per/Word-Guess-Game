@@ -1,97 +1,106 @@
-// Creates an array that lists out all of the options (Rock, Paper, or Scissors).
-var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
-    "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
-];
+$(document).ready(function (){
 
-// Creating variables to hold the number of wins, losses, and ties. They start at 0.
-var wins = 0;
-var losses = 0;
-var guesses = 10;
+    var wordToMatch
+    game.resetgame
+    
+var game = {
+    possibleWords: ["florence", "paris", "madrid", "rome", "singapore", "dubai", "new york city",
+        "shanghai", "london", "tokyo", "sydney", "toronto", "beijing", "moscow",
+        "johannesburg", "istanbul", "warsaw", "jakarta", "kuala lumpur", "mexico city",
+        "hong kong", "chicago", "seoul", "los angeles", "mumbai"
+    ],
+    guessedLetters: [],
+    guessingWord: [],
+    pausegame: false,
+    numGuess: 10,
+    wins: 0,
+    maxGuess: 10,
+    isAlpha: function (ch) {
+        return /^[A-Z]$/i.test(ch);
+    },
+    updateDisplay: function () {
+        document.getElementById("totalWins").innerText = this.wins
+        document.getElementById("currentWord").innerText = this.guessingWord.join("")
+        document.getElementById("remainingGuesses").innerText = this.numGuess
+        document.getElementById("guessedLetters").innerText = this.guessedLetters.join(" ")
+    },
 
-// Create variables that hold references to the places in the HTML where we want to display things.
-var directionsText = document.getElementById("directions-text");
-var userChoiceText = document.getElementById("userchoice-text");
-var userwonText = document.getElementById("userwon-text");
-var userlostText = document.getElementById("userlost-text");
-// var computerChoiceText = document.getElementById("computerchoice-text");
-var winsText = document.getElementById("wins-text");
-var lossesText = document.getElementById("losses-text");
-var guessesText = document.getElementById("guesses-text");
-var gueesedLetters = [];
-// Randomly chooses a choice from the options array. This is the Computer's guess.
-var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    resetgame: function () {
+        this.numGuess = 10
+        this.pausegame = false
 
-function resetcolors() {
-    document.getElementById("a").style.color = "#fff";
-    document.getElementById("b").style.color = "#fff";
-    document.getElementById("c").style.color = "#fff";
-    document.getElementById("d").style.color = "#fff";
-    document.getElementById("e").style.color = "#fff";
-    document.getElementById("f").style.color = "#fff";
-    document.getElementById("g").style.color = "#fff";
-    document.getElementById("h").style.color = "#fff";
-    document.getElementById("i").style.color = "#fff";
-    document.getElementById("j").style.color = "#fff";
-    document.getElementById("k").style.color = "#fff";
-    document.getElementById("l").style.color = "#fff";
-    document.getElementById("m").style.color = "#fff";
-    document.getElementById("n").style.color = "#fff";
-    document.getElementById("o").style.color = "#fff";
-    document.getElementById("p").style.color = "#fff";
-    document.getElementById("q").style.color = "#fff";
-    document.getElementById("r").style.color = "#fff";
-    document.getElementById("s").style.color = "#fff";
-    document.getElementById("t").style.color = "#fff";
-    document.getElementById("u").style.color = "#fff";
-    document.getElementById("v").style.color = "#fff";
-    document.getElementById("w").style.color = "#fff";
-    document.getElementById("x").style.color = "#fff";
-    document.getElementById("y").style.color = "#fff";
-    document.getElementById("z").style.color = "#fff";
-    gueesedLetters.length = 0;
+        // Get a new word
+        wordToMatch = this.possibleWords[Math.floor(Math.random() * this.possibleWords.length)].toUpperCase()
+        console.log(wordToMatch)
 
+        // Reset word arrays
+        this.guessedLetters = []
+        this.guessingWord = []
+
+        // Reset the guessed word
+        for (var i = 0, j = wordToMatch.length; i < j; i++) {
+            // Put a space instead of an underscore between multi word "words"
+            if (wordToMatch[i] === " ") {
+                this.guessingWord.push(" ")
+            } else {
+                this.guessingWord.push("_")
+            }
+        }
+
+        // Update the Display
+        this.dateDisplay()
+    },
+    checkForLetter: function (letter) {
+        var foundLetter = false
+        var correctSound = document.createElement("audio")
+        var incorrectSound = document.createElement("audio")
+        correctSound.setAttribute("src", "assets/sounds/stairs.mp3")
+        incorrectSound.setAttribute("src", "assets/sounds/croak.mp3")
+
+        // Search string for letter
+        for (var i = 0, j = wordToMatch.length; i < j; i++) {
+            if (letter === wordToMatch[i]) {
+                this.guessingWord[i] = letter
+                foundLetter = true
+                correctSound.play()
+                // If guessing word matches random word
+                if (this.guessingWord.join("") === wordToMatch) {
+                    // Increment # of wins
+                    this.wins++
+                    this.pausegame = true
+                    this.updateDisplay()
+                    setTimeout(this.resetgame, 5000)
+                }
+            }
+        }
+
+        if (!foundLetter) {
+            incorrectSound.play()
+            // Check if inccorrect guess is already on the list
+            if (!this.guessedLetters.includes(letter)) {
+                // Add incorrect letter to guessed letter list
+                this.guessedLetters.push(letter)
+                // Decrement the number of remaining guesses
+                this.numGuess--
+            }
+            if (this.numGuess === 0) {
+                // Display word before reseting game
+                this.guessingWord = this.wordToMatch.split()
+                this.pausegame = true
+                setTimeout(this.resetgame, 5000)
+            }
+        }
+
+        this.updateDisplay()
+
+    }
 }
-// This function is run whenever the user presses a key.
 
-
-document.onkeyup = function (event) {
-
-    // Determines which key was pressed.
-    var userGuess = event.key;
-    userwonText.textContent = " ";
-
-
-    // This logic determines the outcome of the game (win/loss/guesses left)
-    if (userGuess === computerGuess) {
-        wins++;
-        userwonText.textContent = "Congrats you guessed the letter: " + computerGuess;
-        guesses = 10;
-        computerGuess = randomizeGuess();
-        resetcolors();
-    } else if ((gueesedLetters.includes(userGuess) === false)) {
-        guesses--;
-        document.getElementById(event.key).style.color = "#222";
+// Wait for key press
+document.onkeypress = function (event) {
+    // Make sure key pressed is an alpha character
+    if (game.isAlpha(event.key) && !game.pausegame) {
+        game.checkForLetter(event.key.toUpperCase())
     }
-    if (guesses === 0) {
-        losses++
-        guesses = 10;
-        computerGuess = randomizeGuess();
-        resetcolors();
-        document.getElementById(event.key).style.color = "#fff";
-        userwonText.textContent = " ";
-    }
-
-    // Function randomizes comouterGuess
-    function randomizeGuess(computerGuess) {
-        return computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-    }
-
-    // Adds letters to array, and filter duplicates.
-    if (gueesedLetters.includes(userGuess) === false) gueesedLetters.push(userGuess);
-
-    userChoiceText.textContent = "You chose: " + userGuess;
-    // computerChoiceText.textContent = "The computer chose: " + computerGuess;
-    winsText.textContent = wins;
-    lossesText.textContent = losses;
-    guessesText.textContent = guesses;
-};
+}
+});

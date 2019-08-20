@@ -19,7 +19,22 @@
             <a class="navbar-brand" href="#">Word Guessing Game </a>
         </nav>
     </header>
+        <div class="container">
+            <h1>World Cities Word Guess Game</h1>
+            <p>Press any key to get started!</p>
 
+            <!-- When user presses any key, start game -->
+            <h4>Wins</h4>
+            <div id="totalWins"></div>
+            <h4>Current Word</h4>
+            <div id="currentWord"></div>
+            <h4>Guesses Remaining</h4>
+            <div id="remainingGuesses"></div>
+            <h4>Letters Guessed</h4>
+            <div id="guessedLetters"></div>
+
+        </div>
+<!-- 
     <div class="container mt-5">
         <div class="row game-container">
             <div class="col-lg-6">
@@ -29,11 +44,17 @@
                     <li>You get only so many guesses...</li>
                     <li>Wins and losses will be tracked till the page is refreshed...</li>
                     <li>So, you think you're able to guess the word?</li>
-                    <li>Type any letter to get started...</li>
+                    <li>Press any key to get started...</li>
+                <div id="currentWord"></div>
                 </ol>
-                <p id="userchoice-text"></p>
+                <p id="guessedLetters"></p>
                 <p id="computerchoice-text"></p>
                 <p id="userwon-text"></p>
+                <div class="row">
+                    <div class="col-lg-12 game-col">
+
+                    </div>
+                </div>
             </div>
             <div class="col-lg-6 game-col">
                 <div class="row mt-5">
@@ -48,7 +69,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td id="wins-text">0</td>
+                                    <td id="totalWins">0</td>
                                     <td id="losses-text">0</td>
                                     <td id="guesses-text">0</td>
                                 </tr>
@@ -103,7 +124,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
